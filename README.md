@@ -66,3 +66,33 @@ Uma classe base deve ser substituível por suas classes derivadas sem a necessid
 ### Dependency Inversion Principle
 Estabelece que as dependências devem ser com abstrações (interfaces) em vez de implementações concretas, priorizando a flexibilidade e a independência das classes.
 
+## **Onde esses princípios são aplicados neste projeto?**
+
+### Single Responsibility Principle
+- **a**: txt
+- **b**: txt
+- *(Adicionar outros conceitos relevantes)*
+
+### Open-Closed Principle
+- **a**: txt
+- **b**: txt
+- *(Adicionar outros conceitos relevantes)*
+
+### Liskov Substitution Principle
+- **a**: txt
+- **b**: txt
+- *(Adicionar outros conceitos relevantes)*
+
+### Interface Segregation Principle
+- **a**: txt
+- **b**: txt
+- **c**: txt
+- *(Adicionar outros conceitos relevantes)*
+
+### Dependency Inversion Principle
+- **a**: txt
+- **b**: txt
+- **c**: txt
+- *(Adicionar outros conceitos relevantes)*
+
+## 
