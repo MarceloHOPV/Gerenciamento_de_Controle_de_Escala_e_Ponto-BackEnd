@@ -1,8 +1,10 @@
 # **Gerenciamento de Controle de Escala e Ponto - BackEnd;**
 ## Este é o back-end de uma aplicação que gerencia a escala e o controle de ponto dos funcionários da cantina do INATEL. O projeto é desenvolvido com o objetivo de seguir os princípios de engenharia de software, aderindo às boas práticas e aos princípios SOLID para manter um código organizado e fácil de manter.
 
+## 
+
 ## **Breve Explicação sobre Princípios de Arquitetura de Software**
-## Existem alguns princípios, como Integridade Conceitual, Ocultamento de Informações, Coesão e Acoplamento, que são fundamentais para projetar um sistema sustentável. Vamos entender um pouco mais sobre cada um deles:
+Existem alguns princípios, como Integridade Conceitual, Ocultamento de Informações, Coesão e Acoplamento, que são fundamentais para projetar um sistema sustentável. Vamos entender um pouco mais sobre cada um deles:
 
 ### Integridade Conceitual: Refere-se à prática de seguir um padrão consistente durante o desenvolvimento do software, facilitando a adição de novas funcionalidades e promovendo um entendimento claro de como o sistema é organizado.
 
@@ -35,3 +37,7 @@
 - **Separação de Serviços em `Services`**: A pasta `services` garante uma divisão clara entre métodos de autenticação e gerenciamento de usuários, o que minimiza a dependência de uma única lógica.
 - *(Adicionar outros conceitos relevantes)*
 
+## 
+
+## **Breve Explicação sobre os princípios SOLID**
+Os princípios SOLID
