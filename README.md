@@ -39,5 +39,30 @@
 
 ## 
 
-## **Breve Explicação sobre os princípios SOLID**
-Os princípios SOLID
+## **Breve Explicação sobre os Princípios SOLID**
+
+Os princípios SOLID são diretrizes que, quando aplicadas, garantem uma arquitetura de software bem estruturada, maximizando a qualidade e a manutenção do sistema. Esses princípios são:
+
+- **S** = Single Responsibility Principle  
+- **O** = Open-Closed Principle  
+- **L** = Liskov Substitution Principle  
+- **I** = Interface Segregation Principle  
+- **D** = Dependency Inversion Principle  
+
+A seguir, vamos entender um pouco mais sobre cada um deles:
+
+### Single Responsibility Principle
+Um módulo ou classe deve ter uma única responsabilidade, sendo responsável apenas por um grupo específico de funcionalidades e mudando apenas se esse grupo precisar de alterações.
+
+### Open-Closed Principle
+É preferível estender funcionalidades de um sistema ao invés de modificar diretamente o código existente.
+
+### Liskov Substitution Principle
+Uma classe base deve ser substituível por suas classes derivadas sem a necessidade de alterar propriedades ou comportamentos esperados.
+
+### Interface Segregation Principle
+É melhor criar interfaces pequenas e específicas, que permitam aos clientes implementar apenas os métodos que realmente irão utilizar.
+
+### Dependency Inversion Principle
+Estabelece que as dependências devem ser com abstrações (interfaces) em vez de implementações concretas, priorizando a flexibilidade e a independência das classes.
+
