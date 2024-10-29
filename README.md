@@ -4,15 +4,15 @@
 ## 
 
 ## **Breve Explicação sobre Princípios de Arquitetura de Software**
-Existem alguns princípios, como Integridade Conceitual, Ocultamento de Informações, Coesão e Acoplamento, que são fundamentais para projetar um sistema sustentável. Vamos entender um pouco mais sobre cada um deles:
+### Existem alguns princípios, como Integridade Conceitual, Ocultamento de Informações, Coesão e Acoplamento, que são fundamentais para projetar um sistema sustentável. Vamos entender um pouco mais sobre cada um deles:
 
-### Integridade Conceitual: Refere-se à prática de seguir um padrão consistente durante o desenvolvimento do software, facilitando a adição de novas funcionalidades e promovendo um entendimento claro de como o sistema é organizado.
+#### Integridade Conceitual: Refere-se à prática de seguir um padrão consistente durante o desenvolvimento do software, facilitando a adição de novas funcionalidades e promovendo um entendimento claro de como o sistema é organizado.
 
-### Ocultamento de Informações: Consiste em tornar públicas apenas as informações essenciais de uma classe ou função, ocultando os detalhes de implementação para quem não precisa interagir diretamente com ela. Isso contribui para a segurança e modularidade do código.
+#### Ocultamento de Informações: Consiste em tornar públicas apenas as informações essenciais de uma classe ou função, ocultando os detalhes de implementação para quem não precisa interagir diretamente com ela. Isso contribui para a segurança e modularidade do código.
 
-### Coesão: Esse princípio promove a criação de classes com uma única responsabilidade bem definida, evitando sobrecarregar cada classe com múltiplas tarefas. Isso facilita a manutenção e a organização do código, pois cada classe executa uma função específica.
+#### Coesão: Esse princípio promove a criação de classes com uma única responsabilidade bem definida, evitando sobrecarregar cada classe com múltiplas tarefas. Isso facilita a manutenção e a organização do código, pois cada classe executa uma função específica.
 
-### Acoplamento: Ao contrário dos outros conceitos, o acoplamento deve ser minimizado sempre que possível. Ele se refere ao grau de dependência entre as classes. Um acoplamento baixo, ou "fraco", significa que as classes não dependem criticamente umas das outras, permitindo que uma classe seja alterada sem quebrar o funcionamento das demais. Um acoplamento alto, por outro lado, pode tornar o sistema frágil e difícil de modificar.
+#### Acoplamento: Ao contrário dos outros conceitos, o acoplamento deve ser minimizado sempre que possível. Ele se refere ao grau de dependência entre as classes. Um acoplamento baixo, ou "fraco", significa que as classes não dependem criticamente umas das outras, permitindo que uma classe seja alterada sem quebrar o funcionamento das demais. Um acoplamento alto, por outro lado, pode tornar o sistema frágil e difícil de modificar.
 
 ## **Onde esses princípios são aplicados neste projeto?**
 
