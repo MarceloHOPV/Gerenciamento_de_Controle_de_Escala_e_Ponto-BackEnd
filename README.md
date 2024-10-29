@@ -31,3 +31,22 @@
                 * Separação de CRUDs: A divisão das operações de CRUD (Create, Read, Update, Delete) reduz o impacto de falhas em uma operação específica, impedindo que elas comprometam outras partes do sistema.
                 * Separação de Serviços em Services: A pasta services garante uma divisão clara entre métodos de autenticação e gerenciamento de usuários, o que minimiza a dependência de uma única lógica.
                 * (Adicionar outros conceitos relevantes)
+
+
+Integridade Conceitual
+Nomenclatura Padrão: As classes seguem padrões de boas práticas em Python, como crud, models, schemas, api, services, e utils. Esses nomes são comuns em aplicações baseadas na Arquitetura Orientada a Serviços (SOA), o que mantém a integridade conceitual do sistema.
+Estrutura de Pastas: A estrutura de pastas do projeto garante que cada classe esteja em um local específico, com um __init__.py em cada pasta. Isso permite que quem usa o projeto possa importar diretamente o módulo desejado.
+(Adicionar outros conceitos relevantes)
+Ocultamento de Informações
+Uso de __init__: Ao utilizar o __init__.py, é possível ocultar detalhes de implementação e permitir a importação direta de métodos sem necessidade de conhecer a estrutura interna.
+Funções Utilitárias em utils: Colocar funções utilitárias na pasta utils permite que apenas as funcionalidades desejadas sejam acessadas, sem necessidade de expor sua lógica interna.
+(Adicionar outros conceitos relevantes)
+Coesão
+Separação de Esquemas (Schemas): A divisão dos esquemas em diferentes arquivos, como auth_schemas, employee_schemas, manager_schemas, time_tracking_schemas, token_schemas, e user_schemas, garante que cada arquivo seja responsável por uma única parte do sistema. Isso facilita a implementação de novos atributos e a identificação de problemas específicos.
+Organização da models: Embora a pasta models contenha manager, employee e user juntos, isso ocorre porque essas tabelas de usuários são fundamentais e mudam pouco. Agrupá-las em um único lugar facilita seu acesso.
+(Adicionar outros conceitos relevantes)
+Acoplamento
+Divisão de routers: Para reduzir o acoplamento, foram criadas classes de routers separadas, evitando que um único app.FastAPI concentre todas as requisições. Dessa forma, o problema em um router específico não afeta os demais.
+Separação de CRUDs: A divisão das operações de CRUD (Create, Read, Update, Delete) reduz o impacto de falhas em uma operação específica, impedindo que elas comprometam outras partes do sistema.
+Separação de Serviços em Services: A pasta services garante uma divisão clara entre métodos de autenticação e gerenciamento de usuários, o que minimiza a dependência de uma única lógica.
+(Adicionar outros conceitos relevantes)
