@@ -5,10 +5,13 @@ from App.schemas.user_schemas import User
 #*********************Employee******************************#
 
 class EmployeeCreate(User):
-    salario_publico: float
-    genero_publico: Genero
-    telefone_publico: Telefone
-    endereco_publico: Endereco
+    salario: float
+    genero: Genero
+    telefone: Telefone
+    endereco: Endereco
+    manager_id: Optional[int]
 
 class EmployeeRead(EmployeeCreate):
     id: int
+
+    

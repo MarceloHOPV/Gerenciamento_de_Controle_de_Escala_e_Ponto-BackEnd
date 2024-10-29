@@ -23,6 +23,9 @@ class EmployeesModel(UsersModel):
     genero = Column(Enum(Genero), index=True)
     cpf = Column(String, index=True)
     salario = Column(Float, index=True)
+    endereco = Column(String, index=True)
+    DDD = Column(String, index=True)
+    telefone = Column(String, index=True)
 
     manager_id = Column(Integer, ForeignKey("managers.id"))
     manager = relationship("ManagersModel", back_populates="employees", foreign_keys=[manager_id])

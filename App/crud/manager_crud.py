@@ -23,7 +23,7 @@ async def add_manager(manager_data: ManagerCreate, db: Session):
             email=manager_data.email,
             hashed_password=bcrypt_context.hash(manager_data.hashed_password),
             is_active=True,
-            user_type="manager"
+            user_type="managers"
         )
 
         # Adiciona e comita o novo gerente ao banco de dados

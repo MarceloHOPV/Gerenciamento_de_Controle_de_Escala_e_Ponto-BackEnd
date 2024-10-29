@@ -9,8 +9,8 @@ class Genero(str, Enum):
     feminino = 'feminino'
 
 class Telefone(BaseModel):
-    ddd: int
-    numero: int
+    ddd: str
+    numero: str
 
 class Endereco(BaseModel):
     rua: str
@@ -18,7 +18,7 @@ class Endereco(BaseModel):
     bairro: str
     cidade: str
     estado: str
-    cep: int
+    cep: str
     complemento: Optional[str] = None
 
 class Hora(BaseModel):
