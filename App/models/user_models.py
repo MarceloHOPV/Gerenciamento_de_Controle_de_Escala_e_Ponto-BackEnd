@@ -17,33 +17,3 @@ class UsersModel(Base):
         'polymorphic_on': user_type
     }
 
-class EmployeesModel(UsersModel):
-    __tablename__ = 'employees'
-    id = Column(Integer, ForeignKey("users.id"), primary_key=True, index=True)
-    genero = Column(Enum(Genero), index=True)
-    cpf = Column(String, index=True)
-    salario = Column(Float, index=True)
-    endereco = Column(String, index=True)
-    DDD = Column(String, index=True)
-    telefone = Column(String, index=True)
-
-    manager_id = Column(Integer, ForeignKey("managers.id"))
-    manager = relationship("ManagersModel", back_populates="employees", foreign_keys=[manager_id])
-
-    bank_hours = relationship("BankHours", back_populates="employee")
-    work_schedule = relationship("WorkSchedule", back_populates="employee")
-    time_punches = relationship("TimePunches", back_populates="employee")
-    
-    __mapper_args__ = {
-        'polymorphic_identity': 'employees'
-    }
-
-class ManagersModel(UsersModel):
-    __tablename__ = 'managers'
-    id = Column(Integer, ForeignKey("users.id"), primary_key=True, index=True)
-    employees = relationship("EmployeesModel", back_populates="manager", foreign_keys=[EmployeesModel.manager_id])
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'managers' 
-    }
-

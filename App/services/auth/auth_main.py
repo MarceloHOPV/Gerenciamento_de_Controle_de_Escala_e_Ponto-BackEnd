@@ -18,6 +18,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 bcrypt = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
+async def Get_user(user: None, db: Session):
+    if user is None:
+        raise HTTPException(status_code=401, detail="User not found")
+    return {"User": user}
+
 def authenticate_user(username: str, password: str, db: Session):
     user = db.query(UsersModel).filter(UsersModel.name == username).first()
     if not user or not bcrypt.verify(password, user.hashed_password):

@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Depends, status
 from sqlalchemy.orm import Session
 from App.db import engine, get_db
-from App.api import api_router  # Certifique-se de que api_router inclui o auth_router
-from App.crud.user_crud import Get_user
+from App.api import api_router
 import App.models as models
 
 # Inicializa a aplicação FastAPI

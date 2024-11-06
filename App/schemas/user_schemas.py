@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
-from App.utils.common_schemas_Enum import Telefone, Endereco, Genero
+from typing import Optional
 #**********************************Modelos*****************************************#
 
 #*********************User**********************************#
@@ -10,6 +9,12 @@ class User(BaseModel):
     email: str
     hashed_password: str
     is_active: bool
+
+class UserUpdate(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    hashed_password: Optional[str]
+    is_active: Optional[bool]
 
 #*********************Manager********************************#
 

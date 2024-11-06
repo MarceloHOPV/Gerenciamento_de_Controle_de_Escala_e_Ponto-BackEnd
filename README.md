@@ -3,6 +3,15 @@
 
 ## 
 
+## **Escolha Arquitetural**
+
+### A arquitetura escolhida para este projeto foi baseada no modelo **SOA (Service-Oriented Architecture)**, aplicada ao backend para responder às requisições do front-end em **SPA (Single Page Application)**.
+
+- Para a implementação do **SOA**, foi utilizado o framework **FastAPI** para a criação da API e o banco de dados **PostgreSQL**.
+- Para a implementação do **SPA**, foi utilizado o **React**.
+
+##
+
 ## **Breve Explicação sobre Princípios de Arquitetura de Software**
 ### Existem alguns princípios, como Integridade Conceitual, Ocultamento de Informações, Coesão e Acoplamento, que são fundamentais para projetar um sistema sustentável. Vamos entender um pouco mais sobre cada um deles:
 
