@@ -9,7 +9,7 @@ from .managers import router as managers_router
 api_router = APIRouter()
 
 # Inclui os roteadores de cada módulo com prefixos opcionais
-api_router.include_router(auth_router, tags=["Auth"])
+api_router.include_router(auth_router, tags=["auth"])
 api_router.include_router(users_router, prefix="/users", tags=["Users"])
 api_router.include_router(employees_router, prefix="/employees", tags=["Employees"])
 api_router.include_router(managers_router, prefix="/managers", tags=["Managers"])

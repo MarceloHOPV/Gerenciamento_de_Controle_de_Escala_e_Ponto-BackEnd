@@ -18,7 +18,6 @@ class EmployeesModel(UsersModel):
     cpf = Column(String, index=True)
     salario = Column(Float, index=True)
     endereco = Column(String, index=True)
-    DDD = Column(String, index=True)
     telefone = Column(String, index=True)
 
     manager_id = Column(Integer, ForeignKey("managers.id"))

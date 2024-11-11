@@ -4,6 +4,7 @@ from App.models import EmployeesModel, ManagersModel, UsersModel
 from passlib.context import CryptContext
 from fastapi import HTTPException, Depends
 import logging
+from App.utils.employee_utils import merge_adress,merge_telefone
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -19,15 +20,25 @@ async def create_employee(db: Session, employee_data: EmployeeCreate):
     hashed_password = bcrypt_context.hash(employee_data.hashed_password)
 
     # Criando o dicionário de dados do employee e colocando a senha criptografada
-    employee_dict = employee_data.dict()
-    employee_dict['hashed_password'] = hashed_password
+    db_employee = EmployeesModel(
+        name=employee_data.name,
+        email=employee_data.email,
+        is_active=True,
+        user_type="employee",
+        genero=employee_data.genero,
+        cpf=employee_data.cpf,
+        salario=employee_data.salario,         # Acessando 'rua' de endereco
+        endereco=merge_adress(employee_data.endereco),          # Acessando 'ddd' de telefone
+        telefone=merge_telefone(employee_data.telefone),    # Acessando 'numero' de telefone
+        manager_id=employee_data.manager_id,
+        hashed_password=hashed_password
+    )
 
     # Comitando o employee no banco de dados
-    db_employee = EmployeesModel(**employee_dict)
     db.add(db_employee)
     db.commit()
     db.refresh(db_employee)
-    return db_employee
+    return {"id":db_employee.id,"name":db_employee.name , "detail":"Employee created successfully", "status":201}
 
 # Exemplo de front-end pra ajudar a entender o código
 # async function createEmployee(employeeData) {
@@ -53,8 +64,20 @@ async def get_employee_list(db: Session, this_manager_id: int):
           raise HTTPException(status_code=404, detail="Manager not found")
     return manager.employees
      
+async def async_get_employee(db: Session, employee_id: int, this_manager_id: int):
+    # Resposta pro front end se o manager existe
+    manager = db.query(ManagersModel).filter(ManagersModel.id == this_manager_id).first()
+    if not manager:
+        raise HTTPException(status_code=404, detail="Manager not found")
+    # Resposta pro front end se o employee existe
+    employee = db.query(EmployeesModel).filter(EmployeesModel.id == employee_id, EmployeesModel.manager_id == this_manager_id).first()
+    if not employee:
+        raise HTTPException(status_code=404, detail="Employee not found")
+    # return se a operação foi um sucesso
+    return employee
+
 # Funções get by id
-async def get_employee(db: Session, employee_id: int, this_manager_id: int):
+def get_employee(db: Session, employee_id: int, this_manager_id: int):
     # Resposta pro front end se o manager existe
     manager = db.query(ManagersModel).filter(ManagersModel.id == this_manager_id).first()
     if not manager:

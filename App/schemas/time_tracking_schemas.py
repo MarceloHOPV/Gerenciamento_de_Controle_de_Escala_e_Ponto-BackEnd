@@ -9,6 +9,6 @@ class BankHours(BaseModel):
 
 class WorkSchedule(BaseModel):
     data_hora: List[Dict[Dia_semana,Hora]]
-
-class TimePunches(BaseModel):
-    data_hora: List[Dict[Dia_semana,Hora]]
+    
+class TimePunchCreate(BaseModel):
+    employee_id: int

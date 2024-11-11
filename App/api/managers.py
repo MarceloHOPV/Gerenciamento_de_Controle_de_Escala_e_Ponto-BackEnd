@@ -22,16 +22,17 @@ async def employee_list(manager_id: int,db: Session = Depends(get_db)):
     return await get_employee_list(db,manager_id)
 
 # posta um employee
-@router.post("/postEmployee/{manager_id}", status_code=status.HTTP_201_CREATED)
-async def employee_create(employee_data: EmployeeCreate, 
-                          db: Session = Depends(get_db)):
-    
+@router.post("/postEmployee/", status_code=status.HTTP_201_CREATED)
+async def employee_create(employee_data: EmployeeCreate, db: Session = Depends(get_db)):
     # Verifique se o usuário atual é um gerente caso usassemos o token
     # if current_user.user_type != "managers":
     #     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized to create employees")
-
     # Cria o funcionário
-    return await create_employee(employee_data, manager_id=employee_data.manager_id, db=db)
+    return await create_employee(db=db, employee_data= employee_data)
+
+@router.delete("/deleteEmployee/{employee_id},{manager_id}", status_code=status.HTTP_200_OK)
+async def employee_delete(employee_id: int,manager_id: int, db: Session = Depends(get_db)):
+    return await delete_employee(db, employee_id,manager_id)
     
 #Endoints da aplicação em geral
 
