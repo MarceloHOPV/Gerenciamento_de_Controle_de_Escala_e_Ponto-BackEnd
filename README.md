@@ -1,5 +1,7 @@
 # **Gerenciamento de Controle de Escala e Ponto - BackEnd;**
 ## Este é o back-end de uma aplicação que gerencia a escala e o controle de ponto dos funcionários da cantina do INATEL. O projeto é desenvolvido com o objetivo de seguir os princípios de engenharia de software, aderindo às boas práticas e aos princípios SOLID para manter um código organizado e fácil de manter.
+  
+***
 
 ## Índice
 
@@ -13,7 +15,7 @@
    - Acessar a Documentação
 3. Estrutura do Projeto
 
----
+##
 
 ## 1. Pré-requisitos
 
@@ -53,9 +55,8 @@ uvicorn main:app --reload
 - Swagger UI: http://127.0.0.1:8000/docs
 - Redoc: http://127.0.0.1:8000/redoc
 
-
-## 
 ***
+
 ## **Escolha Arquitetural**
 
 ### A arquitetura escolhida para este projeto foi baseada no modelo **SOA (Service-Oriented Architecture)**, aplicada ao backend para responder às requisições do front-end em **SPA (Single Page Application)**.
