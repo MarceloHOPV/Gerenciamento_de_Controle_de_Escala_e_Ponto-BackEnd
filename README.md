@@ -55,7 +55,7 @@ uvicorn main:app --reload
 
 
 ## 
-
+***
 ## **Escolha Arquitetural**
 
 ### A arquitetura escolhida para este projeto foi baseada no modelo **SOA (Service-Oriented Architecture)**, aplicada ao backend para responder às requisições do front-end em **SPA (Single Page Application)**.
