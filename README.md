@@ -1,6 +1,61 @@
 # **Gerenciamento de Controle de Escala e Ponto - BackEnd;**
 ## Este é o back-end de uma aplicação que gerencia a escala e o controle de ponto dos funcionários da cantina do INATEL. O projeto é desenvolvido com o objetivo de seguir os princípios de engenharia de software, aderindo às boas práticas e aos princípios SOLID para manter um código organizado e fácil de manter.
 
+##
+
+## Índice
+
+1. Pré-requisitos
+2. Instruções de Configuração
+   - Clonar o Repositório
+   - Criar e Ativar o Ambiente Virtual
+   - Instalar as Dependências
+   - Configurar o Banco de Dados PostgreSQL
+   - Executar a Aplicação
+   - Acessar a Documentação
+3. Estrutura do Projeto
+
+---
+
+## 1. Pré-requisitos
+
+- Python 3.9+
+- PostgreSQL (para o banco de dados)
+- Virtualenv (opcional, mas recomendado para isolar as dependências)
+
+## 2. Instruções de Configuração
+
+### Clone o repositório e navegue até a pasta do projeto:
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd <NOME_DA_PASTA>
+python3 -m venv env
+source env/bin/activate  # No Windows: env\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Instale o PostgreSQL, caso ainda não o tenha, e crie um novo banco de dados com o nome controle_de_escala_e_ponto:
+
+```SQL
+CREATE DATABASE controle_de_escala_e_ponto;
+```
+
+### Configure a URL de conexão no seguinte formato, adaptando para seu ambiente:
+```Python
+DATABASE_URL='postgresql://postgres:9182@localhost:5432/controle_de_escala_e_ponto'
+```
+
+### Inicie o servidor FastAPI com o seguinte comando:
+```bash
+uvicorn main:app --reload
+```
+
+### Após iniciar a aplicação, você pode acessar a documentação interativa:
+- Swagger UI: http://127.0.0.1:8000/docs
+- Redoc: http://127.0.0.1:8000/redoc
+
+
 ## 
 
 ## **Escolha Arquitetural**
