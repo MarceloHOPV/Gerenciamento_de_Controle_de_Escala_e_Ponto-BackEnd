@@ -40,23 +40,6 @@ async def create_employee(db: Session, employee_data: EmployeeCreate):
     db.refresh(db_employee)
     return {"id":db_employee.id,"name":db_employee.name , "detail":"Employee created successfully", "status":201}
 
-# Exemplo de front-end pra ajudar a entender o código
-# async function createEmployee(employeeData) {
-#     const managerId = getLoggedInManagerId(); // Função para pegar o id do manager logado
-#     const response = await fetch("/api/create_employee", {
-#         method: "POST",
-#         headers: {
-#             "Content-Type": "application/json"
-#         },
-#         body: JSON.stringify({
-#             ...employeeData,
-#             manager_id: managerId
-#         })
-#     });
-#     const data = await response.json();
-#     return data;
-# }
-
 # Get employee geral
 async def get_employee_list(db: Session, this_manager_id: int):
     manager = db.query(ManagersModel).filter(ManagersModel.id == this_manager_id).first()
@@ -106,7 +89,7 @@ async def update_employee(db: Session, employee_id: int, update_data: EmployeeUp
 
 async def delete_employee(db: Session, employee_id: int, this_manager_id):
     # Resposta pro front end se o employee existe
-    db_employee = async_get_employee(db, employee_id, this_manager_id)
+    db_employee = get_employee(db, employee_id, this_manager_id)
     if not db_employee:
         raise HTTPException(status_code=404, detail="Employee not found")
     # Deleta o employee caso encontrado

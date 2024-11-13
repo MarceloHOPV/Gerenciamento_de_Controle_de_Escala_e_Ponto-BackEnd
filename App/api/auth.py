@@ -27,11 +27,13 @@ async def login_for_access_token(
     
     # Retorna o token, tipo de token e user_type
     return {
-        "access_token": token_data['access_token'],  # Corrige para pegar a string
-        "token_type": "bearer",
+        #"access_token": token_data['access_token'],  # Corrige para pegar a string
+        #"token_type": "bearer",
+        "user_name": user.name,  # Adiciona o nome do usuário
         "user_type": user.user_type,  # Adiciona o tipo de usuário
-        "user_id": user.id  # Adiciona o ID do usuário
+        "id_user": user.id  # Troca para id_user
     }
+
 
 # Endpoint de autenticação
 @router.get("/", status_code=status.HTTP_200_OK)
