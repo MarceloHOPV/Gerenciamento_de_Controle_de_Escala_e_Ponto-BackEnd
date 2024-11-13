@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from App.models import ManagersModel
 from App.schemas import ManagerCreate, EmployeeCreate
-from App.services.manager_services.manager_control import create_employee, get_employee_list, get_employee,get_manager_by_id, update_employee, delete_employee, add_manager
+from App.services.manager_services.manager_control import create_employee, get_employee_list, get_employee,get_manager_by_id, update_employee, delete_employee, add_manager, async_get_employee
 from App.db import get_db
 
 router = APIRouter(prefix="/managers", tags=["Managers"])
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/managers", tags=["Managers"])
 # pega um employee pelo id
 @router.get("/getEmployeById/{employee_id}{manager_id}",status_code=status.HTTP_201_CREATED)
 async def employee_get(employee_id: int, manager_id: int,db: Session = Depends(get_db)):
-    return await get_employee(db,employee_id,manager_id)
+    return await async_get_employee(db,employee_id,manager_id)
 
 
 # pega todos os employees de um manager

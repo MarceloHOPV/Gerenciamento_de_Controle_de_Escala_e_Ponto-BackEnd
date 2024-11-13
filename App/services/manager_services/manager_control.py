@@ -92,7 +92,7 @@ def get_employee(db: Session, employee_id: int, this_manager_id: int):
 
 async def update_employee(db: Session, employee_id: int, update_data: EmployeeUpdate, this_manager_id: int):
     # Resposta pro front end se o employee existe
-    db_employee = get_employee(db, employee_id, this_manager_id)
+    db_employee = async_get_employee(db, employee_id, this_manager_id)
     if not db_employee:
         raise HTTPException(status_code=404, detail="Employee not found")
     # Atualiza os valores se manager e employee são validos
@@ -106,7 +106,7 @@ async def update_employee(db: Session, employee_id: int, update_data: EmployeeUp
 
 async def delete_employee(db: Session, employee_id: int, this_manager_id):
     # Resposta pro front end se o employee existe
-    db_employee = get_employee(db, employee_id, this_manager_id)
+    db_employee = async_get_employee(db, employee_id, this_manager_id)
     if not db_employee:
         raise HTTPException(status_code=404, detail="Employee not found")
     # Deleta o employee caso encontrado

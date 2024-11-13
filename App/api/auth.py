@@ -29,7 +29,8 @@ async def login_for_access_token(
     return {
         "access_token": token_data['access_token'],  # Corrige para pegar a string
         "token_type": "bearer",
-        "user_type": user.user_type  # Adiciona o tipo de usuário
+        "user_type": user.user_type,  # Adiciona o tipo de usuário
+        "user_id": user.id  # Adiciona o ID do usuário
     }
 
 # Endpoint de autenticação
