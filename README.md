@@ -1,8 +1,6 @@
 # **Gerenciamento de Controle de Escala e Ponto - BackEnd;**
 ## Este é o back-end de uma aplicação que gerencia a escala e o controle de ponto dos funcionários da cantina do INATEL. O projeto é desenvolvido com o objetivo de seguir os princípios de engenharia de software, aderindo às boas práticas e aos princípios SOLID para manter um código organizado e fácil de manter.
 
-##
-
 ## Índice
 
 1. Pré-requisitos
