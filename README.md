@@ -13,9 +13,9 @@
    - Configurar o Banco de Dados PostgreSQL
    - Executar a Aplicação
    - Acessar a Documentação
-3. Estrutura do Projeto
+3. Escolha Arquitetural
 
-##
+***
 
 ## 1. Pré-requisitos
 
@@ -57,7 +57,7 @@ uvicorn main:app --reload
 
 ***
 
-## **Escolha Arquitetural**
+## **3. Escolha Arquitetural**
 
 ### A arquitetura escolhida para este projeto foi baseada no modelo **SOA (Service-Oriented Architecture)**, aplicada ao backend para responder às requisições do front-end em **SPA (Single Page Application)**.
 
