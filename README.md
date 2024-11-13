@@ -23,6 +23,8 @@
 - PostgreSQL (para o banco de dados)
 - Virtualenv (opcional, mas recomendado para isolar as dependências)
 
+##
+
 ***
 
 ## 2. Instruções de Configuração
@@ -56,6 +58,8 @@ uvicorn main:app --reload
 ### Após iniciar a aplicação, você pode acessar a documentação interativa:
 - Swagger UI: http://127.0.0.1:8000/docs
 - Redoc: http://127.0.0.1:8000/redoc
+
+##
 
 ***
 
