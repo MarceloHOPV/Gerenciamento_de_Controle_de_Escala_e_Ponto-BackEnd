@@ -23,6 +23,8 @@
 - PostgreSQL (para o banco de dados)
 - Virtualenv (opcional, mas recomendado para isolar as dependências)
 
+***
+
 ## 2. Instruções de Configuração
 
 ### Clone o repositório e navegue até a pasta do projeto:
