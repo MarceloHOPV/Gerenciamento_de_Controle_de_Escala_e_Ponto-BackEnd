@@ -37,6 +37,22 @@ async def time_punch(db: Session, employee_id: int) -> dict:
         "id": db_employee.id,
         "name": db_employee.name,
         "detail": "Time successfully punched",
-        "status": 200
+        "status": 201
     }
     
+
+#     @router.get("/users/{user_id}", response_model=UserSchema)
+# async def get_user(user_id: int, db: Session = Depends(get_db)):
+#     user = db.query(UsersModel).filter(UsersModel.id == user_id).first()
+#     if not user:
+#         raise HTTPException(status_code=404, detail="User not found")
+
+#     # Cria uma instância de UserSchema com os dados necessários do user
+#     user_data = UserSchema(
+#         id=user.id,
+#         name=user.name,
+#         email=user.email,  # Exemplo: apenas campos definidos no UserSchema
+#         # Adicione os campos relevantes para o schema
+#     )
+
+#     return user_data

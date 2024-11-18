@@ -38,7 +38,10 @@ async def create_employee(db: Session, employee_data: EmployeeCreate):
     db.add(db_employee)
     db.commit()
     db.refresh(db_employee)
-    return {"id":db_employee.id,"name":db_employee.name , "detail":"Employee created successfully", "status":201}
+    return {"id":db_employee.id,
+            "name":db_employee.name , 
+            "detail":"Employee created successfully", 
+            "status":201}
 
 # Get employee geral
 async def get_employee_list(db: Session, this_manager_id: int):

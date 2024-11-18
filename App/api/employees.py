@@ -9,7 +9,7 @@ from App.services.employee_services.employee_control import async_get_employee, 
 router = APIRouter(prefix="/employees", tags=["Employees"])
 
 
-@router.get("/getEmployeById/{employee_id}{manager_id}",status_code=status.HTTP_201_CREATED)
+@router.get("/getEmployeById/{employee_id}{manager_id}",status_code=status.HTTP_200_OK)
 async def employee_get(employee_id: int, manager_id: int,db: Session = Depends(get_db)):
     return await async_get_employee(db,employee_id,manager_id)
 
