@@ -88,7 +88,7 @@ uvicorn main:app --reload
 ## **Onde esses princípios são aplicados neste projeto?**
 
 ### Integridade Conceitual
-- **Nomenclatura Padrão**: As classes seguem padrões de boas práticas em Python, como `crud`, `models`, `schemas`, `api`, `services`, e `utils`. Esses nomes são comuns em aplicações baseadas na Arquitetura Orientada a Serviços (SOA), o que mantém a integridade conceitual do sistema.
+- **Nomenclatura Padrão**: As classes seguem padrões de boas práticas em Python, como `models`, `schemas`, `api`, `services`, e `utils`. Esses nomes são comuns em aplicações baseadas na Arquitetura Orientada a Serviços (SOA), o que mantém a integridade conceitual do sistema.
 - **Estrutura de Pastas**: A estrutura de pastas do projeto garante que cada classe esteja em um local específico, com um `__init__.py` em cada pasta. Isso permite que quem usa o projeto possa importar diretamente o módulo desejado.
 - *(Adicionar outros conceitos relevantes)*
 
@@ -104,7 +104,6 @@ uvicorn main:app --reload
 
 ### Acoplamento
 - **Divisão de `routers`**: Para reduzir o acoplamento, foram criadas classes de `routers` separadas, evitando que um único `app.FastAPI` concentre todas as requisições. Dessa forma, o problema em um router específico não afeta os demais.
-- **Separação de CRUDs**: A divisão das operações de CRUD (Create, Read, Update, Delete) reduz o impacto de falhas em uma operação específica, impedindo que elas comprometam outras partes do sistema.
 - **Separação de Serviços em `Services`**: A pasta `services` garante uma divisão clara entre métodos de autenticação e gerenciamento de usuários, o que minimiza a dependência de uma única lógica.
 - *(Adicionar outros conceitos relevantes)*
 
@@ -140,30 +139,25 @@ Estabelece que as dependências devem ser com abstrações (interfaces) em vez d
 ## **Onde esses princípios são aplicados neste projeto?**
 
 ### Single Responsibility Principle
-- **a**: txt
-- **b**: txt
+- **Divisão de `controls`**: A separação em `employee_control.py` e `manager_control.py` garante que o projeto seja **coeso** e bem **encapsulado**.
+- **Divisão de `APIs`**: A organização das APIs em `auth.py`, `employee.py` e `managers.py` facilita a modificação de rotas, tornando o processo mais simples e ágil.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Open-Closed Principle
-- **a**: txt
-- **b**: txt
+- **Pasta Utils**: Nesta pasta encontram-se funções que auxiliam na lógica de funcionamento do projeto. Somente os elementos necessários para uso são expostos, ocultando a lógica desnecessária para o usuário final.
+- **Scripts de controle com funções auxiliares que não são `privadas`**: O uso de funções privadas nos controladores garante que apenas o necessário seja acessível, tornando a interface mais intuitiva e focada no uso principal.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Liskov Substitution Principle
-- **a**: txt
-- **b**: txt
+- **Classe `employee_model` e `manager_model`**: Ambas as classes herdam de `user_model` e, caso fossem substituídas, não perderiam suas funcionalidades, mantendo o funcionamento do sistema de forma tranquila.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Interface Segregation Principle
-- **a**: txt
-- **b**: txt
-- **c**: txt
+- **Interface Segregation Principle**: No projeto, a interface `get_employee` é implementada por `manager_control` e `employee_control`, garantindo que cada classe utilize apenas os métodos necessários para sua lógica específica. Essa abordagem evita a sobrecarga de métodos não utilizados, tornando as implementações mais coesas e alinhadas com suas responsabilidades.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Dependency Inversion Principle
-- **a**: txt
-- **b**: txt
-- **c**: txt
+- **Dependency Inversion Principle**: No projeto, o princípio de Inversão de Dependência é aplicado através da interface `get_employee`, utilizada tanto por `manager_control` quanto por `employee_control`. Isso garante que as classes dependam de abstrações e não de implementações concretas, permitindo maior flexibilidade e facilidade de manutenção ao modificar detalhes da lógica de acesso a dados.
 - *(Adicionar outros conceitos relevantes)*
 
 ## 

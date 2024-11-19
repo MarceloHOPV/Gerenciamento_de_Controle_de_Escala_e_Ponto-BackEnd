@@ -11,10 +11,10 @@ class User(BaseModel):
     is_active: bool
 
 class UserUpdate(BaseModel):
-    name: Optional[str]
-    email: Optional[str]
-    hashed_password: Optional[str]
-    is_active: Optional[bool]
+    name: Optional[str] = None
+    email: Optional[str] = None
+    hashed_password: Optional[str] = None
+    is_active: Optional[bool] = None
 
 #*********************Manager********************************#
 

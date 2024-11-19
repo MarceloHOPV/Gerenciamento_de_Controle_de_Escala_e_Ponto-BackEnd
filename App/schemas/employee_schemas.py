@@ -15,7 +15,33 @@ class EmployeeRead(EmployeeCreate):
     id: int
 
 class EmployeeUpdate(UserUpdate):
-    salario: Optional[float]
-    genero: Optional[Genero]
-    telefone: Optional[Telefone]
-    endereco: Optional[Endereco]
+    salario: Optional[float] = None
+    genero: Optional[Genero] = None
+    telefone: Optional[Telefone] = None
+    endereco: Optional[Endereco] = None
+
+class EmployeeInfo(BaseModel):
+    id: int
+    name: str
+    email: str
+    is_active: bool
+    genero: str
+    cpf: str
+    salario: float
+    endereco: str
+    telefone: str
+    class Config:
+        from_attributes = True 
+
+class EmployeeSalary(BaseModel):
+    name: str
+    salario: float
+    class Config:
+        from_attributes = True 
+
+class EmployeeListItem(BaseModel):
+    name: str
+    cpf: str
+    email: str
+    class Config:
+        from_attributes = True

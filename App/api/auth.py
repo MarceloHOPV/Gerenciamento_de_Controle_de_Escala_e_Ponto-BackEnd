@@ -33,8 +33,6 @@ async def login_for_access_token(
         "user_type": user.user_type,  # Adiciona o tipo de usuário
         "id_user": user.id  # Troca para id_user
     }
-
-
 # Endpoint de autenticação
 @router.get("/", status_code=status.HTTP_200_OK)
 async def authenticate_user(user: dict = Depends(get_current_user_has_access), db: Session = Depends(get_db)):
