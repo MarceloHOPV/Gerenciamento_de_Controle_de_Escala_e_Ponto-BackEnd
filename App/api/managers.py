@@ -1,7 +1,7 @@
 # App/api/manager.py
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from App.schemas import ManagerCreate, EmployeeCreate, EmployeeInfo, EmployeeUpdate
+from App.schemas import ManagerCreate, EmployeeCreate, EmployeeInfo, EmployeeUpdate,WorkScheduleEntry, WorkScheduleSchema
 from App.services.manager_services.manager_control import ManagerControl
 from App.db import get_db
 
@@ -41,6 +41,26 @@ async def __get_salary_list(manager_id: int, db: Session = Depends(get_db)):
 @router.put("/updateEmployee/{employee_id},{manager_id}", status_code=status.HTTP_200_OK)
 async def __update_employee_info(employee_id: int, manager_id: int, update_data: EmployeeUpdate, db: Session = Depends(get_db)):
     return await mc._update_employee(db, employee_id, update_data,manager_id)
+
+@router.post("/employees/{employee_id}{this_manager_id}/work-schedules", response_model=dict)
+async def __work_schedule_post(
+    employee_id: int,
+    work_schedule_data: WorkScheduleEntry,
+    this_manager_id: int,
+    db: Session = Depends(get_db)
+):
+    return await mc._post_work_schedule(db, work_schedule_data, employee_id, this_manager_id)
+
+
+# Endpoint para listar horários de trabalho
+@router.get("/employees/{employee_id}{this_manager_id}/work-schedules", response_model=WorkScheduleSchema)
+async def __work_scheduleget(
+    employee_id: int,
+    this_manager_id: int,
+    db: Session = Depends(get_db)
+):
+    return await mc._get_work_schedule_list(db, employee_id, this_manager_id)
+
 #Endoints da aplicação em geral
 # pega o manager pelo id
 @router.get("/getManagerByID/{manager_id}", status_code=status.HTTP_200_OK)

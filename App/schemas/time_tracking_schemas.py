@@ -7,8 +7,14 @@ class BankHours(BaseModel):
     horas_trabalhadas: Hora
     saldo_horas: Optional[Hora]
 
-class WorkSchedule(BaseModel):
-    data_hora: List[Dict[Dia_semana,Hora]]
+class WorkScheduleEntry(BaseModel):
+    day_of_week: Dia_semana
+    start_time: Hora
+    end_time: Hora
+
+# Modelo que contém a lista de horários
+class WorkScheduleSchema(BaseModel):
+    data_hora: List[WorkScheduleEntry]
     
 class TimePunchCreate(BaseModel):
     employee_id: int
