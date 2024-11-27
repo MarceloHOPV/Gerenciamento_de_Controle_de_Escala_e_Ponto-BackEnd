@@ -10,9 +10,9 @@ router = APIRouter(prefix="/employees", tags=["Employees"])
 
 ec = EmployeeControl()
 
-@router.get("/getEmployeById/{employee_id}{manager_id}",status_code=status.HTTP_200_OK)
-async def __employee_get(employee_id: int, manager_id: int,db: Session = Depends(get_db)):
-    return await ec.async_get_employee(ec, db,employee_id,manager_id)
+@router.get("/getEmployeById/{employee_id}",status_code=status.HTTP_200_OK)
+async def __employee_get(employee_id: int,db: Session = Depends(get_db)):
+    return await ec._get_employee_info(db,employee_id)
 
 @router.post("/postEmployee/", status_code=status.HTTP_201_CREATED)
 async def __punch_time(time_punches: TimePunchCreate, db: Session = Depends(get_db)):

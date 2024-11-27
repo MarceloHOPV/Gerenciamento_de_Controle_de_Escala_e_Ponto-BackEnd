@@ -5,13 +5,14 @@ from App.models.time_tracking_models import TimePunches
 from datetime import datetime
 from App.utils.Interfaces.EmployeeGeter import EmployeeGeter
 from abc import ABC, abstractmethod
+from App.schemas import EmployeeInfo
 
 class EmployeeControl(EmployeeGeter):
 
     def __init__(self):
         pass
 
-    def get_employee(db: Session, employee_id: int):
+    def get_employee(self, db: Session, employee_id: int):
             # Resposta pro front end se o employee existe
             employee = db.query(EmployeesModel).filter(EmployeesModel.id == employee_id).first()
             if not employee:
@@ -20,7 +21,14 @@ class EmployeeControl(EmployeeGeter):
             return employee
 
     async def async_get_employee(self, db: Session, employee_id: int):
-        return await self.__get_employee(db, employee_id)
+        return self.get_employee(db, employee_id)
+    
+    async def _get_employee_info(self, db: Session, employee_id: int) -> EmployeeInfo:
+        db_employee = await self.async_get_employee(db, employee_id)
+        if not db_employee:
+            raise HTTPException(status_code=404, detail="Employee not found")
+        # Converta diretamente para o schema
+        return EmployeeInfo.from_orm(db_employee)
 
     async def time_punch(db: Session, employee_id: int) -> dict:
         # Busca o funcionário pelo ID
