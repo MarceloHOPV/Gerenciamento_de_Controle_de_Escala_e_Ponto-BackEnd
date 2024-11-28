@@ -7,6 +7,181 @@
 	},
 	"item": [
 		{
+			"name": "UpdateEmployeeCheck",
+			"item": [
+				{
+					"name": "UpdateEmployee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Melhor goleiro\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/managers/managers/updateEmployee/{{employee_id}},{{manager_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"managers",
+								"managers",
+								"updateEmployee",
+								"{{employee_id}},{{manager_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUpdatedEmployee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Verify response structure for GET employee details\", function () {\r",
+									"    // Parse o body da resposta\r",
+									"    const response = pm.response.json();\r",
+									"\r",
+									"    // Verifica a existência e os tipos das propriedades\r",
+									"    pm.expect(response).to.have.property(\"id\").that.is.a(\"number\");\r",
+									"    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"is_active\").that.is.a(\"boolean\");\r",
+									"    pm.expect(response).to.have.property(\"genero\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"cpf\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"salario\").that.is.a(\"number\");\r",
+									"    pm.expect(response).to.have.property(\"endereco\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"telefone\").that.is.a(\"string\");\r",
+									"\r",
+									"    // Validação adicional para padrões específicos (opcional)\r",
+									"    pm.expect(response.name).to.include(\"Melhor goleiro\");\r",
+									"    pm.expect(response.email).to.include(\"@\"); // Email deve conter \"@\"\r",
+									"    pm.expect(response.salario).to.be.at.least(0); // Salário deve ser maior ou igual a zero\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/managers/managers/getEmployeById/{{employee_id}},{{manager_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"managers",
+								"managers",
+								"getEmployeById",
+								"{{employee_id}},{{manager_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmployeeToOrigin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Alves\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/managers/managers/updateEmployee/{{employee_id}},{{manager_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"managers",
+								"managers",
+								"updateEmployee",
+								"{{employee_id}},{{manager_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEmployee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Verify response structure for GET employee details\", function () {\r",
+									"    // Parse o body da resposta\r",
+									"    const response = pm.response.json();\r",
+									"\r",
+									"    // Verifica a existência e os tipos das propriedades\r",
+									"    pm.expect(response).to.have.property(\"id\").that.is.a(\"number\");\r",
+									"    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"is_active\").that.is.a(\"boolean\");\r",
+									"    pm.expect(response).to.have.property(\"genero\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"cpf\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"salario\").that.is.a(\"number\");\r",
+									"    pm.expect(response).to.have.property(\"endereco\").that.is.a(\"string\");\r",
+									"    pm.expect(response).to.have.property(\"telefone\").that.is.a(\"string\");\r",
+									"\r",
+									"    // Validação adicional para padrões específicos (opcional)\r",
+									"    pm.expect(response.name).to.include(\"Alves\");\r",
+									"    pm.expect(response.email).to.include(\"@\"); // Email deve conter \"@\"\r",
+									"    pm.expect(response.salario).to.be.at.least(0); // Salário deve ser maior ou igual a zero\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/managers/managers/getEmployeById/{{employee_id}},{{manager_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"managers",
+								"managers",
+								"getEmployeById",
+								"{{employee_id}},{{manager_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "PostExistentEmployee",
 			"event": [
 				{
@@ -52,90 +227,6 @@
 						"managers",
 						"postEmployee",
 						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateEmployee",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Melhor goleiro\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{URL}}/managers/managers/updateEmployee/{{employee_id}},{{manager_id}}",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"managers",
-						"managers",
-						"updateEmployee",
-						"{{employee_id}},{{manager_id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetEmployee",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Verify response structure for GET employee details\", function () {\r",
-							"    // Parse o body da resposta\r",
-							"    const response = pm.response.json();\r",
-							"\r",
-							"    // Verifica a existência e os tipos das propriedades\r",
-							"    pm.expect(response).to.have.property(\"id\").that.is.a(\"number\");\r",
-							"    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");\r",
-							"    pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");\r",
-							"    pm.expect(response).to.have.property(\"is_active\").that.is.a(\"boolean\");\r",
-							"    pm.expect(response).to.have.property(\"genero\").that.is.a(\"string\");\r",
-							"    pm.expect(response).to.have.property(\"cpf\").that.is.a(\"string\");\r",
-							"    pm.expect(response).to.have.property(\"salario\").that.is.a(\"number\");\r",
-							"    pm.expect(response).to.have.property(\"endereco\").that.is.a(\"string\");\r",
-							"    pm.expect(response).to.have.property(\"telefone\").that.is.a(\"string\");\r",
-							"\r",
-							"    // Validação adicional para padrões específicos (opcional)\r",
-							"    pm.expect(response.email).to.include(\"@\"); // Email deve conter \"@\"\r",
-							"    pm.expect(response.salario).to.be.at.least(0); // Salário deve ser maior ou igual a zero\r",
-							"});\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/managers/managers/getEmployeById/{{employee_id}},{{manager_id}}",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"managers",
-						"managers",
-						"getEmployeById",
-						"{{employee_id}},{{manager_id}}"
 					]
 				}
 			},
