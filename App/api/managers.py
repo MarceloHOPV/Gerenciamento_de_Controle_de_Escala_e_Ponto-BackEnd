@@ -10,7 +10,7 @@ router = APIRouter(prefix="/managers", tags=["Managers"])
 mc = ManagerControl()
 
 # pega um employee pelo id
-@router.get("/getEmployeById/{employee_id}{manager_id}",status_code=status.HTTP_201_CREATED,response_model=EmployeeInfo)
+@router.get("/getEmployeById/{employee_id},{manager_id}",status_code=status.HTTP_200_OK,response_model=EmployeeInfo)
 async def __employee_get(employee_id: int, manager_id: int,db: Session = Depends(get_db)):
     return await mc._get_employee_info(db,employee_id,manager_id)
 # pega todos os employees de um manager

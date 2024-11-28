@@ -27,7 +27,7 @@ class ManagerControl(EmployeeGeter):
 
         employee = db.query(EmployeesModel).filter(EmployeesModel.email == employee_data.email).first()
         if employee:
-            raise HTTPException(status_code=404, detail="Already exists a employee with this email")
+            raise HTTPException(status_code=400, detail="Already exists a employee with this email")
 
         # Criptografando a senha
         hashed_password = self.bcrypt_context.hash(employee_data.hashed_password)
@@ -62,9 +62,12 @@ class ManagerControl(EmployeeGeter):
             if not manager:
                 raise HTTPException(status_code=404, detail="Manager not found")
             # Resposta pro front end se o employee existe
-            employee = db.query(EmployeesModel).filter(EmployeesModel.id == employee_id, EmployeesModel.manager_id == this_manager_id).first()
+            employee = db.query(EmployeesModel).filter(EmployeesModel.id == employee_id).first()
             if not employee:
                 raise HTTPException(status_code=404, detail="Employee not found")
+            employee = db.query(EmployeesModel).filter(EmployeesModel.manager_id == this_manager_id).first()
+            if not employee:
+                raise HTTPException(status_code=400, detail="This employee does not belong to this manager")
             # return se a operação foi um sucesso
             return employee
     
@@ -113,8 +116,6 @@ class ManagerControl(EmployeeGeter):
     async def _delete_employee(self, db: Session, employee_id: int, this_manager_id):
         # Resposta pro front end se o employee existe
         db_employee = self.get_employee(db, employee_id, this_manager_id)
-        if not db_employee:
-            raise HTTPException(status_code=404, detail="Employee not found")
         # Deleta o employee caso encontrado
         db.delete(db_employee)
         db.commit()

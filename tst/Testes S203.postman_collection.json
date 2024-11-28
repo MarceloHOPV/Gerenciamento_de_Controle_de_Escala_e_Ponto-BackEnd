@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "23eda627-cda1-49ff-8a69-ad8982364d45",
+		"name": "Testes S203",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39316529"
+	},
+	"item": [
+		{
+			"name": "PostExistentEmployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify if employee already exists\", function () {\r",
+							"    // Verifica se o status HTTP é 400 ou o esperado em caso de conflito\r",
+							"    pm.response.to.have.status(400); \r",
+							"\r",
+							"    // Analisa o body da resposta\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    // Verifica se o campo \"detail\" contém a mensagem esperada\r",
+							"    pm.expect(response).to.have.property(\"detail\", \"Already exists a employee with this email\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Juliely\",\r\n  \"cpf\": \"123456789\",\r\n  \"email\": \"juliely@email.com\",\r\n  \"hashed_password\": \"987456321\",\r\n  \"is_active\": true,\r\n  \"salario\": 0,\r\n  \"genero\": \"feminino\",\r\n  \"telefone\": {\r\n    \"ddd\": \"123654123\",\r\n    \"numero\": \"789654789\"\r\n  },\r\n  \"endereco\": {\r\n    \"rua\": \"Avenida principal\",\r\n    \"numero\": 0,\r\n    \"bairro\": \"Centro\",\r\n    \"cidade\": \"Cambui\",\r\n    \"estado\": \"MG\",\r\n    \"cep\": \"36589000\",\r\n    \"complemento\": \"Casa\"\r\n  },\r\n  \"manager_id\": 6\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/managers/managers/postEmployee/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"managers",
+						"managers",
+						"postEmployee",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEmployee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Melhor goleiro\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/managers/managers/updateEmployee/{{employee_id}},{{manager_id}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"managers",
+						"managers",
+						"updateEmployee",
+						"{{employee_id}},{{manager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify response structure for GET employee details\", function () {\r",
+							"    // Parse o body da resposta\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    // Verifica a existência e os tipos das propriedades\r",
+							"    pm.expect(response).to.have.property(\"id\").that.is.a(\"number\");\r",
+							"    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\");\r",
+							"    pm.expect(response).to.have.property(\"email\").that.is.a(\"string\");\r",
+							"    pm.expect(response).to.have.property(\"is_active\").that.is.a(\"boolean\");\r",
+							"    pm.expect(response).to.have.property(\"genero\").that.is.a(\"string\");\r",
+							"    pm.expect(response).to.have.property(\"cpf\").that.is.a(\"string\");\r",
+							"    pm.expect(response).to.have.property(\"salario\").that.is.a(\"number\");\r",
+							"    pm.expect(response).to.have.property(\"endereco\").that.is.a(\"string\");\r",
+							"    pm.expect(response).to.have.property(\"telefone\").that.is.a(\"string\");\r",
+							"\r",
+							"    // Validação adicional para padrões específicos (opcional)\r",
+							"    pm.expect(response.email).to.include(\"@\"); // Email deve conter \"@\"\r",
+							"    pm.expect(response.salario).to.be.at.least(0); // Salário deve ser maior ou igual a zero\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/managers/managers/getEmployeById/{{employee_id}},{{manager_id}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"managers",
+						"managers",
+						"getEmployeById",
+						"{{employee_id}},{{manager_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attempt to delete employee by unauthorized manager",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Unauthorized manager cannot delete employee\", function () {\r",
+							"    pm.response.to.have.status(400); // Verifica o status HTTP esperado\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property(\"detail\", \"This employee does not belong to this manager\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/managers/managers/deleteEmployee/{{employee_id}},{{Wrong_manager}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"managers",
+						"managers",
+						"deleteEmployee",
+						"{{employee_id}},{{Wrong_manager}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
