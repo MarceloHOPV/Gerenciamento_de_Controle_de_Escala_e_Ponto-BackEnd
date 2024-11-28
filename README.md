@@ -99,7 +99,7 @@ uvicorn main:app --reload
 
 ### Coesão
 - **Separação de Esquemas (`Schemas`)**: A divisão dos esquemas em diferentes arquivos, como `auth_schemas`, `employee_schemas`, `manager_schemas`, `time_tracking_schemas`, `token_schemas`, e `user_schemas`, garante que cada arquivo seja responsável por uma única parte do sistema. Isso facilita a implementação de novos atributos e a identificação de problemas específicos.
-- **Organização da `models`**: Embora a pasta `models` contenha `manager`, `employee` e `user` juntos, isso ocorre porque essas tabelas de usuários são fundamentais e mudam pouco. Agrupá-las em um único lugar facilita seu acesso.
+- **Organização da `models`**: A pasta `models` contenha `manager`, `employee` e `user` separados, para que fique mais fácil fazer alterações nelas sem quebrar o código inteiro.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Acoplamento
@@ -145,7 +145,7 @@ Estabelece que as dependências devem ser com abstrações (interfaces) em vez d
 
 ### Open-Closed Principle
 - **Pasta Utils**: Nesta pasta encontram-se funções que auxiliam na lógica de funcionamento do projeto. Somente os elementos necessários para uso são expostos, ocultando a lógica desnecessária para o usuário final.
-- **Scripts de controle com funções auxiliares que não são `privadas`**: O uso de funções privadas nos controladores garante que apenas o necessário seja acessível, tornando a interface mais intuitiva e focada no uso principal.
+- **Scripts de controle com funções auxiliares que são `privadas`**: O uso de funções privadas nos controladores garante que apenas o necessário seja acessível, tornando a interface mais intuitiva e focada no uso principal.
 - *(Adicionar outros conceitos relevantes)*
 
 ### Liskov Substitution Principle
