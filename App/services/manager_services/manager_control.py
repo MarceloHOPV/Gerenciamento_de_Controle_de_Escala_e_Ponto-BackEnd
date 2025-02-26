@@ -27,7 +27,7 @@ class ManagerControl(EmployeeGeter):
 
         employee = db.query(EmployeesModel).filter(EmployeesModel.email == employee_data.email).first()
         if employee:
-            raise HTTPException(status_code=400, detail="Already exists a employee with this email")
+            raise HTTPException(status_code=400, detail="Already exists a employee with a email")
 
         # Criptografando a senha
         hashed_password = self.bcrypt_context.hash(employee_data.hashed_password)
