@@ -3,3 +3,4 @@
 
 # Ambiente virtual
 env/
+.env
