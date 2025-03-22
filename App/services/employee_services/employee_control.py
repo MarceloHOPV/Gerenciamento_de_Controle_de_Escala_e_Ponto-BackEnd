@@ -23,7 +23,7 @@ class EmployeeControl(EmployeeGeter):
     async def async_get_employee(self, db: Session, employee_id: int):
         return self.get_employee(db, employee_id)
     
-    async def _get_employee_info(self, db: Session, employee_id: int) -> EmployeeInfo:
+    async def get_employee_info(self, db: Session, employee_id: int) -> EmployeeInfo:
         db_employee = await self.async_get_employee(db, employee_id)
         if not db_employee:
             raise HTTPException(status_code=404, detail="Employee not found")
