@@ -31,6 +31,9 @@ jobs:
     - name: Run tests with pytest
       run: |
         pytest tests/ -v
+
+
+jobs:        
   build:
 
     runs-on: ubuntu-latest
