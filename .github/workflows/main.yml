@@ -40,6 +40,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Criar .env com banco fake
+      run: echo "DATABASE_URL=sqlite:///:memory:" > .env
+
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
@@ -49,9 +52,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
-    - name: Criar .env
-      run: echo "DATABASE_URL=sqlite:///:memory:" > .env
 
     - name: Rodar testes
       run: pytest tests/testUnitario/ -v
