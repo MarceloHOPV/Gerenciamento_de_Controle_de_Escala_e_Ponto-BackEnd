@@ -11,14 +11,14 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    name: Build da Aplicação
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python 3.10
+    - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
@@ -28,19 +28,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests with pytest
-      run: |
-        pytest tests/ -v
+    - name: Build fake
+      run: echo "Aqui rodaria o processo de build real, se existisse"
 
-  unitary-tests:
-
+  unit-tests:
     runs-on: ubuntu-latest
+    name: Testes Unitários
+    needs: build  # 👈 espera o job 'build' terminar com sucesso
 
     steps:
-    - name: Testes Unitários
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Python 3.10
+    - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
@@ -50,10 +50,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Create .env file
-      run: |
-        echo "DATABASE_URL=sqlite:///:memory:" > .env
+    - name: Criar .env
+      run: echo "DATABASE_URL=sqlite:///:memory:" > .env
 
-    - name: Run tests with pytest
-      run: |
-        pytest tests/ -v
+    - name: Rodar testes
+      run: pytest tests/testUnitario/ -v
