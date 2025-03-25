@@ -79,7 +79,7 @@ class ManagerControl(EmployeeGeter):
         if not db_employee:
             raise HTTPException(status_code=404, detail="Employee not found")
         # Converta diretamente para o schema
-        return EmployeeInfo.from_orm(db_employee)
+        return EmployeeInfo.model_validate(db_employee)
 
     async def _list_employees(self, db: Session, this_manager_id: int) -> List[EmployeeListItem]:
         manager = db.query(ManagersModel).filter(ManagersModel.id == this_manager_id).first()
@@ -87,7 +87,7 @@ class ManagerControl(EmployeeGeter):
             raise HTTPException(status_code=404, detail="Manager not found")
         # Converte cada funcionário do ORM para o schema
         employees = [
-            EmployeeListItem.from_orm(employee) for employee in manager.employees
+            EmployeeListItem.model_validate(employee) for employee in manager.employees
         ]
         return employees
 
@@ -127,7 +127,7 @@ class ManagerControl(EmployeeGeter):
             raise HTTPException(status_code=404, detail="Manager not found")
         # Converte cada funcionário do ORM para o schema
         employees_salary = [
-            EmployeeSalary.from_orm(employee) for employee in manager.employees
+            EmployeeSalary.model_validate(employee) for employee in manager.employees
         ]
         return employees_salary
 

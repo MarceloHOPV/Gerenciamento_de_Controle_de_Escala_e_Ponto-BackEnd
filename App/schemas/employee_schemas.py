@@ -30,18 +30,21 @@ class EmployeeInfo(BaseModel):
     salario: float
     endereco: str
     telefone: str
-    class Config:
-        from_attributes = True 
+    model_config = {
+        "from_attributes": True
+    }
 
 class EmployeeSalary(BaseModel):
     name: str
     salario: float
-    class Config:
-        from_attributes = True 
+    model_config = {
+        "from_attributes": True
+    }
 
 class EmployeeListItem(BaseModel):
     name: str
     cpf: str
     email: str
-    class Config:
-        from_attributes = True
+    model_config = {
+        "from_attributes": True
+    }

@@ -28,7 +28,7 @@ class EmployeeControl(EmployeeGeter):
         if not db_employee:
             raise HTTPException(status_code=404, detail="Employee not found")
         # Converta diretamente para o schema
-        return EmployeeInfo.from_orm(db_employee)
+        return EmployeeInfo.model_validate(db_employee)
 
     async def time_punch(db: Session, employee_id: int) -> dict:
         # Busca o funcionário pelo ID
