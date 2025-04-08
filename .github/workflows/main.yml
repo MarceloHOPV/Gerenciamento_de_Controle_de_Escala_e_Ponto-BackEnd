@@ -63,13 +63,14 @@ jobs:
       run: pytest tests/testUnitario/ -v
 
   notification:
-    needs: unit-tests
+    needs: 
+      - build
+      - unit-tests
     runs-on: ubuntu-latest
+    name: Notificação de Testes
 
     env:
       DESTINATION_EMAIL: ${{ vars.DESTINATION_EMAIL }}
-
-    name: Build da Aplicação
 
     steps:
     - name: Checkout repository
