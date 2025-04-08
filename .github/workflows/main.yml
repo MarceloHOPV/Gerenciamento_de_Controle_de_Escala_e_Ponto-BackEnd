@@ -41,7 +41,6 @@ jobs:
   unit-tests:
     runs-on: ubuntu-latest
     name: Testes Unitários
-    needs: build  # 👈 espera o job 'build' terminar com sucesso
 
     steps:
     - name: Checkout repository
@@ -62,3 +61,21 @@ jobs:
 
     - name: Rodar testes
       run: pytest tests/testUnitario/ -v
+
+  notification:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+
+    env:
+      DESTINATION_EMAIL: ${{ vars.DESTINATION_EMAIL }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Notification
+        run: sh scripts/shell.sh
