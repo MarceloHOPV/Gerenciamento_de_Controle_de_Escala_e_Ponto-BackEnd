@@ -65,11 +65,10 @@ jobs:
   notification:
     needs: unit-tests
     runs-on: ubuntu-latest
+    name: Notificação de Testes
 
     env:
       DESTINATION_EMAIL: ${{ vars.DESTINATION_EMAIL }}
-
-    name: Build da Aplicação
 
     steps:
     - name: Checkout repository
