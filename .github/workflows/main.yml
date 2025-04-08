@@ -36,7 +36,7 @@ jobs:
       run: echo "Aqui rodaria o processo de build real, se existisse"
 
     - name: Rodar API (exemplo, só pra teste)
-      run: uvicorn main:app --host 0.0.0.0 --port 8000
+      run: timeout 10 uvicorn main:app --host 0.0.0.0 --port 8000
 
   unit-tests:
     runs-on: ubuntu-latest
